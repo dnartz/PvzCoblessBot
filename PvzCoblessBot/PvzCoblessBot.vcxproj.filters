@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lauxlib.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_alloc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_arch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_asm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_asm_arm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_asm_mips.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_asm_ppc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_asm_x86.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_bc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_bcdump.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_carith.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_ccall.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_ccallback.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_cconv.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_cdata.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_char.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_clib.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_cparse.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_crecord.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_ctype.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_debug.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_def.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_emit_arm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_emit_mips.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_emit_ppc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_emit_x86.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_err.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_errmsg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_ff.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_ffrecord.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_frame.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_func.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_gc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_gdbjit.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_ir.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_ircall.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_iropt.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_jit.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_lex.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_lib.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_mcode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_meta.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_obj.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_parse.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_record.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_snap.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_state.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_str.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_strscan.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_tab.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_target.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_target_arm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_target_mips.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_target_ppc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_target_x86.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_traceerr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_udata.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_vm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lj_vmevent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lua.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lua.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\luaconf.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\luajit.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaJIT\lualib.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Logger.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameMemory.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EventLoop.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Mouse.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LuaInterface.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMemory.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="EventLoop.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LuaInterface.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config.lua" />
+    <None Include="main.lua" />
+    <None Include="Common.lua" />
+    <None Include="CommonStrategy.lua" />
+    <None Include="Scheduler.lua" />
+    <None Include="Track.lua" />
+    <None Include="Startup.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lua51.lib" />
+    <Library Include="luajit.lib" />
+  </ItemGroup>
+</Project>

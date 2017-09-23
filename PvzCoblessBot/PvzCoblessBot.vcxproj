@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{AAAF8010-338F-4FC2-BD37-A99309D2A228}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>PvzCoblessBot</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)include\LuaJIT</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>luajit.lib;lua51.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ShowProgress>NotSet</ShowProgress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)include\LuaJIT</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>luajit.lib;lua51.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)</AdditionalLibraryDirectories>
+      <ShowProgress>NotSet</ShowProgress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)include\LuaJIT</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>luajit.lib;lua51.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ShowProgress>NotSet</ShowProgress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)include\LuaJIT</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>luajit.lib;lua51.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ShowProgress>NotSet</ShowProgress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\EventLoop.h" />
+    <ClInclude Include="include\LuaInterface.h" />
+    <ClInclude Include="include\LuaJIT\lauxlib.h" />
+    <ClInclude Include="include\LuaJIT\lj_alloc.h" />
+    <ClInclude Include="include\LuaJIT\lj_arch.h" />
+    <ClInclude Include="include\LuaJIT\lj_asm.h" />
+    <ClInclude Include="include\LuaJIT\lj_asm_arm.h" />
+    <ClInclude Include="include\LuaJIT\lj_asm_mips.h" />
+    <ClInclude Include="include\LuaJIT\lj_asm_ppc.h" />
+    <ClInclude Include="include\LuaJIT\lj_asm_x86.h" />
+    <ClInclude Include="include\LuaJIT\lj_bc.h" />
+    <ClInclude Include="include\LuaJIT\lj_bcdump.h" />
+    <ClInclude Include="include\LuaJIT\lj_carith.h" />
+    <ClInclude Include="include\LuaJIT\lj_ccall.h" />
+    <ClInclude Include="include\LuaJIT\lj_ccallback.h" />
+    <ClInclude Include="include\LuaJIT\lj_cconv.h" />
+    <ClInclude Include="include\LuaJIT\lj_cdata.h" />
+    <ClInclude Include="include\LuaJIT\lj_char.h" />
+    <ClInclude Include="include\LuaJIT\lj_clib.h" />
+    <ClInclude Include="include\LuaJIT\lj_cparse.h" />
+    <ClInclude Include="include\LuaJIT\lj_crecord.h" />
+    <ClInclude Include="include\LuaJIT\lj_ctype.h" />
+    <ClInclude Include="include\LuaJIT\lj_debug.h" />
+    <ClInclude Include="include\LuaJIT\lj_def.h" />
+    <ClInclude Include="include\LuaJIT\lj_emit_arm.h" />
+    <ClInclude Include="include\LuaJIT\lj_emit_mips.h" />
+    <ClInclude Include="include\LuaJIT\lj_emit_ppc.h" />
+    <ClInclude Include="include\LuaJIT\lj_emit_x86.h" />
+    <ClInclude Include="include\LuaJIT\lj_err.h" />
+    <ClInclude Include="include\LuaJIT\lj_errmsg.h" />
+    <ClInclude Include="include\LuaJIT\lj_ff.h" />
+    <ClInclude Include="include\LuaJIT\lj_ffrecord.h" />
+    <ClInclude Include="include\LuaJIT\lj_frame.h" />
+    <ClInclude Include="include\LuaJIT\lj_func.h" />
+    <ClInclude Include="include\LuaJIT\lj_gc.h" />
+    <ClInclude Include="include\LuaJIT\lj_gdbjit.h" />
+    <ClInclude Include="include\LuaJIT\lj_ir.h" />
+    <ClInclude Include="include\LuaJIT\lj_ircall.h" />
+    <ClInclude Include="include\LuaJIT\lj_iropt.h" />
+    <ClInclude Include="include\LuaJIT\lj_jit.h" />
+    <ClInclude Include="include\LuaJIT\lj_lex.h" />
+    <ClInclude Include="include\LuaJIT\lj_lib.h" />
+    <ClInclude Include="include\LuaJIT\lj_mcode.h" />
+    <ClInclude Include="include\LuaJIT\lj_meta.h" />
+    <ClInclude Include="include\LuaJIT\lj_obj.h" />
+    <ClInclude Include="include\LuaJIT\lj_parse.h" />
+    <ClInclude Include="include\LuaJIT\lj_record.h" />
+    <ClInclude Include="include\LuaJIT\lj_snap.h" />
+    <ClInclude Include="include\LuaJIT\lj_state.h" />
+    <ClInclude Include="include\LuaJIT\lj_str.h" />
+    <ClInclude Include="include\LuaJIT\lj_strscan.h" />
+    <ClInclude Include="include\LuaJIT\lj_tab.h" />
+    <ClInclude Include="include\LuaJIT\lj_target.h" />
+    <ClInclude Include="include\LuaJIT\lj_target_arm.h" />
+    <ClInclude Include="include\LuaJIT\lj_target_mips.h" />
+    <ClInclude Include="include\LuaJIT\lj_target_ppc.h" />
+    <ClInclude Include="include\LuaJIT\lj_target_x86.h" />
+    <ClInclude Include="include\LuaJIT\lj_traceerr.h" />
+    <ClInclude Include="include\LuaJIT\lj_udata.h" />
+    <ClInclude Include="include\LuaJIT\lj_vm.h" />
+    <ClInclude Include="include\LuaJIT\lj_vmevent.h" />
+    <ClInclude Include="include\LuaJIT\lua.h" />
+    <ClInclude Include="include\LuaJIT\lua.hpp" />
+    <ClInclude Include="include\LuaJIT\luaconf.h" />
+    <ClInclude Include="include\LuaJIT\luajit.h" />
+    <ClInclude Include="include\LuaJIT\lualib.h" />
+    <ClInclude Include="include\Logger.h" />
+    <ClInclude Include="include\GameMemory.h" />
+    <ClInclude Include="include\Mouse.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="EventLoop.cpp" />
+    <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="GameMemory.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="LuaInterface.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CommonStrategy.lua">
+      <FileType>Script</FileType>
+    </None>
+    <None Include="Config.lua">
+      <FileType>Script</FileType>
+    </None>
+    <None Include="Common.lua">
+      <FileType>Script</FileType>
+    </None>
+    <None Include="main.lua">
+      <FileType>Script</FileType>
+    </None>
+    <None Include="Scheduler.lua">
+      <FileType>Script</FileType>
+    </None>
+    <None Include="Startup.lua">
+      <FileType>Script</FileType>
+    </None>
+    <None Include="Track.lua">
+      <FileType>Script</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lua51.lib" />
+    <Library Include="luajit.lib" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
