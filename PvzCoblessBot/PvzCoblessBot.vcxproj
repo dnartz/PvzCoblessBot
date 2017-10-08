@@ -266,6 +266,9 @@
     <None Include="Common.lua">
       <FileType>Script</FileType>
     </None>
+    <None Include="Ending.lua">
+      <FileType>Script</FileType>
+    </None>
     <None Include="main.lua">
       <FileType>Script</FileType>
     </None>

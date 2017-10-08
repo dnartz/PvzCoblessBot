@@ -40,14 +40,16 @@ struct SpawnCoroutine {
     int32_t flag;
     int32_t wave;
     int32_t delay;
+    int32_t timeout;
     lua_State *L;
 
     SpawnCoroutine(
         int32_t flag,
         int32_t wave, 
         int32_t delay,
+        int32_t timeout,
         lua_State *L
-    ): flag(flag), wave(wave), delay(delay), L(L) { }
+    ): flag(flag), wave(wave), delay(delay), timeout(timeout), L(L) { }
 };
 
 struct SpawnCountdownCoroutine {

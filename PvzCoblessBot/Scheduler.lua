@@ -45,7 +45,7 @@ function Scheduler:Select()
         end
     end
 
-    return cd, op
+    return cd, op, j
 end
 
 -- 选择一个未被其他波次占用，且剩余冷却最短的灰烬操作。
@@ -57,10 +57,20 @@ function Scheduler:Acquire()
         coroutine.yield()
     end
 
-    local cd, op = self:Select()
+    local cd, op, j = self:Select()
 
     table.remove(self.available, j)
     return cd, op
+end
+
+-- 取消1到wave波的全部灰烬操作。
+function Scheduler:Cancel(wave)
+    for _, val in pairs(self.selected) do
+        if val.wave <= wave then
+            val.cancel = true
+        end
+    end
+    logger:Info("已取消1到" .. wave .. "波的灰烬操作。")
 end
 
 -- 将使用完的灰烬操作放回Available数组，如果有挂起的波次处理线程，那么唤醒它们。
@@ -157,11 +167,18 @@ function Scheduler:Run(wave, afterSpawn)
 
     -- 如果在释放第9波的灰烬时，之前波次的灰烬还没开始释放，那就取消它们的释放。
     -- 因为这可以为拖延逻辑提供更多的操作选择，并且也不会导致樱桃格被冰道侵占。
-    if wave == 9 then
-        for _, o in pairs(self.selected) do
-            if o ~= opImp then
-                o.cancel = true
-            end
+    if wave == 9 or wave == 19 then
+        self:Cancel(wave - 1)
+
+        -- 遍历一下末尾波的僵尸，如果血量都低于1800，那就放弃操作，防止红字提前出现。
+        -- 无需担心冰车的情况，因为Ending类已经帮我们判断过了。
+        if not Zombies.Find(function (z)
+            return z.spawnedAt == wave and z.hp > 1800
+        end)
+        then
+            logger:Info("末尾波僵尸血量均低于1800，放弃灰烬操作。")
+            self:Release(op)
+            return
         end
     end
 

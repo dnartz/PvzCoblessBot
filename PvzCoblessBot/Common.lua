@@ -44,6 +44,7 @@ struct Context {
     uint32_t spawnSeed;
     int32_t gameTime;
     int32_t spawnCountdown;
+    int32_t alertCountdown;
     int32_t currentFlag;
     int32_t currentWave;
     int32_t currentScene;
@@ -303,6 +304,8 @@ setmetatable(Plants, {
     end
 })
 
+IcePathLimit = {108, 188, 268, 348, 428, 508, 588, 668, 751}
+
 Craters = {
     ForEach = function(fn)
         for i = 0, Context.nCraters - 1 do
@@ -371,6 +374,8 @@ GrowPlant = function (...)
                 row = 0
                 col = 0
                 remove = false
+            else
+                brutal = false
             end
 
             return ffi.C.GrowPlant(plant, row, col, brutal, remove)
@@ -399,7 +404,7 @@ GrowInstantPlant = function (plant, ...)
     local pos = {...}
     assert(plant ~= 0)
     WaitUntilCardAvailable(plant)
-    if #pos == 2 then
+    if #pos >= 2 then
         return GrowPlant(plant, pos[1], pos[2], false, true)
     else
         return GrowPlant(plant)
@@ -410,6 +415,19 @@ IsCardAvailable = ffi.C.IsCardAvailable
 GetCardColdDown = ffi.C.GetCardColdDown
 
 WaitNextTick = function () Wait(1) end
+WaitRedAlert = function ()
+    ::again::
+    if (Context.currentWave == 9 or
+        Context.currentWave == 19) and
+        Context.spawnCountdown == 4
+    then
+        return
+    else
+        WaitNextTick()
+        goto again
+    end
+end
+
 TickCoroutine = nil
 ClearTickHandler = nil
 OnTick = (function ()
@@ -443,16 +461,3 @@ OnTick = (function ()
         end))
     end
 end)()
-
-function InstanceOf (subject, super)
-	super = tostring(super)
-    print(super)
-	local mt = getmetatable(subject)
-
-	while true do
-		if mt == nil then return false end
-		if tostring(mt) == super then return true end
-
-		mt = getmetatable(mt)
-	end	
-end

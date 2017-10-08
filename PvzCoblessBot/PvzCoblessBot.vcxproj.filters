@@ -260,6 +260,7 @@
     <None Include="Scheduler.lua" />
     <None Include="Track.lua" />
     <None Include="Startup.lua" />
+    <None Include="Ending.lua" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="lua51.lib" />

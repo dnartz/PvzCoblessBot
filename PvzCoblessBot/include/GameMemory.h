@@ -165,6 +165,7 @@ struct Context {
     uint32_t spawnSeed;
     int32_t gameTime;
     int32_t spawnCountdown;
+    int32_t alertCountdown;
     int32_t currentFlag;
     int32_t currentWave;
     int32_t currentScene;
@@ -261,6 +262,15 @@ public:
         );
         if (!success) {
             logger.ErrorHalt("获取僵尸刷新倒计时失败。", false);
+        }
+
+        success = ReadMemory(
+            nextContext->alertCountdown,
+            gameContextBaseAddress,
+            0x55a4
+        );
+        if (!success) {
+            logger.ErrorHalt("获取红字倒计时失败。", false);
         }
 
         return success;

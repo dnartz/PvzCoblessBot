@@ -23,16 +23,11 @@ for row = 0, 5 do
         for col = 4, 5 do
             table.insert(pumpkinFixList, {row, col})
         end
-    elseif row == 5 then
-        for col = 0, 3 do
-            table.insert(pumpkinFixList, {row, col})
-        end
     else
         table.insert(pumpkinFixList, {row, 0})
-        table.insert(pumpkinFixList, {row, 3})
     end
 end
 local pf = common.PumpkinFixer:New(pumpkinFixList)
 pf:Run()
 
-Track.DoomShroomStartup:Run()
+Track:Run()

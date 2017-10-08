@@ -127,7 +127,7 @@ local GrowJalapeno = function()
      -- 如果6列不能放辣椒，就放在5列。
      if IsCardAvailable(Plants.Jalapeno) then
          GrowInstantPlant(Plants.Jalapeno, 5, 4)
-         -- 还是不行，尝试4000列。
+         -- 还是不行，尝试4列。
          WaitNextTick()
          if IsCardAvailable(Plants.Jalapeno) then
              GrowInstantPlant(Plants.Jalapeno, 5, 3)
@@ -142,7 +142,10 @@ local CherryAndJalapeno = {
 }
 
 function CherryAndJalapeno:New()
-    local o = {cancel = false}
+    local o = {
+        cancel = false,
+        wave = Context.currentWave
+    }
     setmetatable(o, {__index = CherryAndJalapeno})
     return o
 end
@@ -183,7 +186,10 @@ local CherryAndDelayedJalapeno = {
 }
 
 function CherryAndDelayedJalapeno:New()
-    local o = {cancel = false}
+    local o = {
+        cancel = false,
+        wave = Context.currentWave
+    }
     setmetatable(o, {__index = CherryAndDelayedJalapeno})
     return o
 end
@@ -215,8 +221,15 @@ function CherryAndDelayedJalapeno:Run(cs)
     GrowCherry()
     self.Logger:Info("樱桃释放完毕。")
 
-    Wait(800)
+    Wait(150)
+    if Context.spawnCountdown > 200 and not self.cancel then
+        self.Logger:Info("刷怪未被激活，将立即释放辣椒。")
+        GrowJalapeno()
+        return
+    end
 
+    -- 为了炸到下一波的巨人，延迟220。
+    WaitUntilSpawn(Context.currentWave + 1, 220)
     if self.cancel then
         self.Logger:Info("延迟辣椒已取消。")
         return
@@ -232,7 +245,10 @@ local PoolDoomShroom = {
 }
 
 function PoolDoomShroom:New()
-    local o = {cancel = false}
+    local o = {
+        cancel = false,
+        wave = Context.currentWave
+    }
     setmetatable(o, {__index = PoolDoomShroom})
     return o
 end
@@ -263,14 +279,17 @@ function PoolDoomShroom:Run (cs)
         return
     end
 
-    for col = 6, 8 do
-        for row = 2, 3 do
-            if Context.gridGrowable[row][col] then
-                WaitUntilCardAvailable(Plants.DoomShroom)
-                GrowPlant(Plants.LilyPad, row, col)
-                GrowPlant(Plants.DoomShroom, row, col)
-                self.Logger:Info("水路核武释放完毕。")
-                return
+    while true do
+        WaitUntilCardAvailable(Plants.DoomShroom)
+        WaitUntilCardAvailable(Plants.LilyPad)
+        for col = 6, 8 do
+            for row = 2, 3 do
+                if Context.gridGrowable[row][col] then
+                    GrowPlant(Plants.LilyPad, row, col)
+                    GrowPlant(Plants.DoomShroom, row, col)
+                    self.Logger:Info("水路核武释放完毕。")
+                    return
+                end
             end
         end
     end
@@ -283,7 +302,10 @@ local PoolImitaterDoomShroom = {
 }
 
 function PoolImitaterDoomShroom:New()
-    local o = {cancel = false}
+    local o = {
+        cancel = false,
+        wave = Context.currentWave
+    }
     setmetatable(o, {__index = PoolImitaterDoomShroom})
     return o
 end
@@ -321,21 +343,19 @@ function PoolImitaterDoomShroom:Run (cs, noIce)
     end
 
     local timeout, mRow, mCol = MinPoolCrater()
+    print(mRow, mCol)
     local jackRow
     if mRow == 2 then jackRow = 1 else jackRow = 4 end
 
     noIce = noIce or
-            Context.currentWave == 9 and
-            not Zombies.Find(function(z)
-                return z.type == Zombies.GigaGargantuar and z.hp > 1200
-            end) and
+            (Context.currentWave == 9 or Context.currentWave == 19) and
             not Zombies.Find(function (z)
                 return z.type == Zombies.Jack and z.row == jackRow or
                        z.row == mRow and
-                           z.type ~= Zombies.Balloon and
-                           z.type ~= Zombies.Dolphin and
-                           -- 如果水路对应行的僵尸正在啃咬，说明它已经在咬水路前面的南瓜了。
-                           not z.eating
+                       z.type ~= Zombies.Balloon and
+                       z.type ~= Zombies.Dolphin and
+                       -- 如果水路对应行的僵尸正在啃咬，说明它已经在咬水路前面的南瓜了。
+                       not z.eating
             end)
 
     if self.cancel then
@@ -344,19 +364,28 @@ function PoolImitaterDoomShroom:Run (cs, noIce)
     end
 
     if not noIce then
+        local cd = GetCardColdDown(Plants.LilyPad)
+        if cd > 0 then
+            Wait(cd)
+        end
         GrowInstantPlant(Plants.IceShroom)
     else
         self.Logger:Info("没有有威胁的僵尸，将不会使用冰菇。")
         Wait(timeout + 1)
+
+        WaitUntilCardAvailable(Plants.Imitater)
+        WaitUntilCardAvailable(Plants.LilyPad)
         GrowPlant(Plants.LilyPad, mRow, mCol)
         GrowPlant(Plants.Imitater, mRow, mCol)
+        return
     end
     Wait(100)
 
+    WaitUntilCardAvailable(Plants.Imitater)
+    WaitUntilCardAvailable(Plants.LilyPad)
     for col = 6, 8 do
         for row = 2, 3 do
             if Context.gridGrowable[row][col] then
-                WaitUntilCardAvailable(Plants.Imitater)
                 GrowPlant(Plants.LilyPad, row, col)
                 GrowPlant(Plants.Imitater, row, col)
                 self.Logger:Info("水路复制核武释放完毕。")
@@ -396,7 +425,7 @@ function CherryAndJalapenoEnding:Run()
         coroutine.wrap(function()
             if not Zombies.Find(function(z)
                 return (z.type == Zombies.Gargantuar or
-                       z.type == GigaGargantuar) and
+                       z.type == Zombies.GigaGargantuar) and
                        z.row == 5
             end)
             then

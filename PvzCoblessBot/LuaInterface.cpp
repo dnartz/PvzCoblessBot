@@ -123,14 +123,14 @@ int Delay(lua_State *L) {
 int WaitUntilSpawn(lua_State *L) {
     static auto& loop = EventLoop::GetInstance();
 
-    int nargs, wave, delay = 0;
+    int nargs, wave, delay = 0, timeout = -1;
     nargs = lua_gettop(L);
     if (nargs == 0) {
         wave = loop.context->currentWave + 1;
         if (wave > 20) {
             return 0;
         }
-    } else if (nargs == 1 || nargs == 2) {
+    } else if (nargs > 0 && nargs <= 3) {
         wave = static_cast<int32_t>(luaL_checkinteger(L, 1));
         if (!(0 < wave && wave < 21)) {
             lua_pushstring(L, "WaitUntilSpawn函数错误：传入的刷新波次参数不在取值范围中。");
@@ -140,13 +140,17 @@ int WaitUntilSpawn(lua_State *L) {
         if (nargs == 2) {
             delay = luaL_checkinteger(L, 2);
         }
+
+        if (nargs == 3) {
+            timeout = luaL_checkinteger(L, 3) + loop.context->gameTime;
+        }
     } else {
         lua_pushstring(L, "WaitUntilSpawn函数错误：传入了过多参数。");
         lua_error(L);
     }
 
     loop.spawnCoroutines.emplace_back(
-        loop.context->currentFlag, wave, delay, L
+        loop.context->currentFlag, wave, delay, timeout, L
     );
     return lua_yield(L, 0);
 }
@@ -162,13 +166,13 @@ int WaitBeforeSpawn(lua_State *L) {
 
     int32_t countdown = luaL_checkinteger(L, 1);
     int32_t wave = loop.context->currentWave + 1;
-    int32_t timeout = 0;
+    int32_t timeout = -1;
     if (nargs > 1) {
         wave = luaL_checkinteger(L, 2);
     }
 
     if (nargs > 2) {
-        timeout = luaL_checkinteger(L, 3);
+        timeout = loop.context->gameTime + luaL_checkinteger(L, 3);
     }
 
     if (wave > 20) {
@@ -178,7 +182,7 @@ int WaitBeforeSpawn(lua_State *L) {
 
     if (wave <= loop.context->currentWave ||
         wave == loop.context->currentWave + 1 &&
-        countdown <= loop.context->spawnCountdown)
+        countdown >= loop.context->spawnCountdown)
     {
         return 0;
     }
@@ -196,7 +200,6 @@ GrowPlant(int type, int row, int col, bool brutal, bool remove) {
 
     if (!brutal &&
         !remove &&
-
         // 如果此时修补的是南瓜，那么也就意味着那个位置可以种植植物。
         type != static_cast<int>(PlantType::Pumpkin) &&
         !loop.context->gridGrowable[row][col])

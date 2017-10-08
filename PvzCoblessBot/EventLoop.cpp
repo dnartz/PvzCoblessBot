@@ -27,6 +27,7 @@ EventLoop::EventLoop(): logger("ÊÂ¼þÑ­»·") {
 void EventLoop::InitLua() {
     lua_register(L, "Wait", Delay);
     lua_register(L, "WaitUntilSpawn", WaitUntilSpawn);
+    lua_register(L, "WaitBeforeSpawn", WaitBeforeSpawn);
     lua_register(L, "SetTickCoroutine", SetTickCoroutine);
     lua_register(L, "WaitUntilCardAvailable", WaitUntilCardAvailable);
 
@@ -137,8 +138,9 @@ void EventLoop::Loop() {
         spawnCountdownCoroutines.remove_if(
         [&](struct SpawnCountdownCoroutine &co) {
             if (context->currentWave >= co.wave ||
-                co.wave - 1 == context->currentWave &&
-                co.countdown <= context->spawnCountdown)
+                co.timeout != -1 && co.timeout <= context->gameTime ||
+                co.wave == context->currentWave + 1 &&
+                co.countdown >= context->spawnCountdown)
             {
                 RunLua(co.L);
                 return true;
@@ -158,7 +160,10 @@ void EventLoop::Loop() {
 
         spawnCoroutines.remove_if([&](struct SpawnCoroutine &co) {
             if (co.wave <= context->currentWave) {
-                if (co.delay == 0) {
+                if (co.delay == 0 ||
+                    co.timeout != -1 &&
+                    co.timeout <= context->gameTime)
+                {
                     RunLua(co.L);
                 } else {
                     delayCoroutines.emplace_back(
